@@ -88,6 +88,15 @@ def is_valid(url):
             + r"|thmx|mso|arff|rtf|jar|csv"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
+        # Detects Repeating Directories (.../data/data/data)
+        if re.match(r".*?(/[^/]+)/+?\1/+?\1.*", parsed.path):
+            return False
+
+        # if '/' appears in an URL more than 20 times then it probably is a trap
+        if len(parsed.path.split("/")) > 20:
+            return False
+
+
     except TypeError:
         print("TypeError for ", parsed)
         raise
