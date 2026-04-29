@@ -1,30 +1,83 @@
 import re
-from urllib.parse import urlparse
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin, urldefrag
+
+STOPWORDS = {
+    "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't",
+    "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by",
+    "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't",
+    "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't",
+    "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers",
+    "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if",
+    "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most",
+    "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other",
+    "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd",
+    "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the",
+    "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd",
+    "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until",
+    "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't",
+    "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's",
+    "whom", "why", "why's", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll",
+    "you're", "you've", "your", "yours", "yourself", "yourselves"
+}
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
 def extract_next_links(url, resp):
-    # Implementation required.
-    # url: the URL that was used to get the page
-    # resp.url: the actual url of the page
-    # resp.status: the status code returned by the server. 200 is OK, you got the page. Other numbers mean that there was some kind of problem.
-    # resp.error: when status is not 200, you can check the error here, if needed.
-    # resp.raw_response: this is where the page actually is. More specifically, the raw_response has two parts:
-    #         resp.raw_response.url: the url, again
-    #         resp.raw_response.content: the content of the page!
-    # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
-    return list()
+    links = []
+
+    # Only process successful responses with actual content
+    if resp.status != 200:
+        return links
+    if resp.raw_response is None or resp.raw_response.content is None:
+        return links
+
+    try:
+        # Parse the HTML
+        soup = BeautifulSoup(resp.raw_response.content, "html.parser")
+
+        # Find every <a href="..."> link
+        for anchor in soup.find_all("a", href=True):
+            href = anchor["href"].strip()
+            if not href:
+                continue
+
+            # Convert relative URLs (like "/about") to absolute URLs
+            absolute_url = urljoin(resp.url, href)
+
+            # Strip the #fragment part
+            defragmented_url, _ = urldefrag(absolute_url)
+
+            links.append(defragmented_url)
+
+    except Exception as e:
+        print(f"Error parsing {url}: {e}")
+
+    return links
 
 def is_valid(url):
-    # Decide whether to crawl this url or not. 
+    # Decide whether to crawl this url or not.
     # If you decide to crawl it, return True; otherwise return False.
-    # There are already some conditions that return False.
     try:
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
+
+        # Only allow URLs within the four required UCI domains
+        allowed_domains = (
+            ".ics.uci.edu",
+            ".cs.uci.edu",
+            ".informatics.uci.edu",
+            ".stat.uci.edu",
+        )
+        hostname = parsed.hostname
+        if hostname is None:
+            return False
+        if not any(hostname == d[1:] or hostname.endswith(d) for d in allowed_domains):
+            return False
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
@@ -36,5 +89,5 @@ def is_valid(url):
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
     except TypeError:
-        print ("TypeError for ", parsed)
+        print("TypeError for ", parsed)
         raise
