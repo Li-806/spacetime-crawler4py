@@ -1,3 +1,4 @@
+import multiprocessing
 from configparser import ConfigParser
 from argparse import ArgumentParser
 
@@ -16,6 +17,7 @@ def main(config_file, restart):
 
 
 if __name__ == "__main__":
+    multiprocessing.set_start_method("fork")
     parser = ArgumentParser()
     parser.add_argument("--restart", action="store_true", default=False)
     parser.add_argument("--config_file", type=str, default="config.ini")

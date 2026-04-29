@@ -1,30 +1,64 @@
 import re
-from urllib.parse import urlparse
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urljoin, urldefrag
 
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
 
 def extract_next_links(url, resp):
-    # Implementation required.
-    # url: the URL that was used to get the page
-    # resp.url: the actual url of the page
-    # resp.status: the status code returned by the server. 200 is OK, you got the page. Other numbers mean that there was some kind of problem.
-    # resp.error: when status is not 200, you can check the error here, if needed.
-    # resp.raw_response: this is where the page actually is. More specifically, the raw_response has two parts:
-    #         resp.raw_response.url: the url, again
-    #         resp.raw_response.content: the content of the page!
-    # Return a list with the hyperlinks (as strings) scrapped from resp.raw_response.content
-    return list()
+    links = []
+
+    # Only process successful responses with actual content
+    if resp.status != 200:
+        return links
+    if resp.raw_response is None or resp.raw_response.content is None:
+        return links
+
+    try:
+        # Parse the HTML
+        soup = BeautifulSoup(resp.raw_response.content, "html.parser")
+
+        # Find every <a href="..."> link
+        for anchor in soup.find_all("a", href=True):
+            href = anchor["href"].strip()
+            if not href:
+                continue
+
+            # Convert relative URLs (like "/about") to absolute URLs
+            absolute_url = urljoin(resp.url, href)
+
+            # Strip the #fragment part
+            defragmented_url, _ = urldefrag(absolute_url)
+
+            links.append(defragmented_url)
+
+    except Exception as e:
+        print(f"Error parsing {url}: {e}")
+
+    return links
 
 def is_valid(url):
-    # Decide whether to crawl this url or not. 
+    # Decide whether to crawl this url or not.
     # If you decide to crawl it, return True; otherwise return False.
-    # There are already some conditions that return False.
     try:
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
+
+        # Only allow URLs within the four required UCI domains
+        allowed_domains = (
+            ".ics.uci.edu",
+            ".cs.uci.edu",
+            ".informatics.uci.edu",
+            ".stat.uci.edu",
+        )
+        hostname = parsed.hostname
+        if hostname is None:
+            return False
+        if not any(hostname == d[1:] or hostname.endswith(d) for d in allowed_domains):
+            return False
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
@@ -36,5 +70,5 @@ def is_valid(url):
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
 
     except TypeError:
-        print ("TypeError for ", parsed)
+        print("TypeError for ", parsed)
         raise
