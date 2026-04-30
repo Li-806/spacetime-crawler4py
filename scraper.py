@@ -141,13 +141,32 @@ def is_valid(url):
         if not any(hostname == d[1:] or hostname.endswith(d) for d in allowed_domains):
             return False
 
+        known_trap_sites = [
+            "gitlab.ics.uci.edu",
+            "fano.ics.uci.edu",
+            "~eppstein/pix",
+            "grape.ics.uci.edu"
+        ]
+
+        if any(pattern in url for pattern in known_trap_sites):
+            return False
+
+        if "/events/" in parsed.path or "ical" in parsed.query or "outlook" in parsed.query:
+            return False
+
+        if "doku.php" in parsed.path:
+            if "do=" in parsed.query or "idx=" in parsed.query:
+                return False
+
         # Detect repeating directories (trap)
         if re.match(r".*?(/[^/]+)/+?\1/+?\1.*", parsed.path):
             return False
 
         # Detect very long paths (trap)
-        if len(parsed.path.split("/")) > 20:
+        if len(parsed.path.split("/")) > 15:
             return False
+
+        #
 
         # Block non-text file types
         return not re.match(
