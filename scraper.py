@@ -5,10 +5,10 @@ from collections import defaultdict
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin, urldefrag
 
-# ─── File to persist stats across crawler restarts ───
+# File name where our data is saved incase crawler crashes
 STATS_FILE = "crawler_stats.json"
 
-# ─── Stop words to ignore when counting words ───
+# Ignoring stop words for accurate word frequency count
 STOPWORDS = {
     "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't",
     "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by",
@@ -28,7 +28,7 @@ STOPWORDS = {
     "you're", "you've", "your", "yours", "yourself", "yourselves"
 }
 
-# ─── Load stats from file (so we don't lose data if crawler restarts) ───
+# Loading saved data for crawler run
 def load_stats():
     if os.path.exists(STATS_FILE):
         with open(STATS_FILE, "r") as f:
@@ -41,7 +41,7 @@ def load_stats():
             )
     return set(), {"url": "", "count": 0}, defaultdict(int), defaultdict(int)
 
-# ─── Save stats to file ───
+# Save stats to file
 def save_stats(unique_pages, longest_page, word_freq, subdomains):
     with open(STATS_FILE, "w") as f:
         json.dump({
@@ -51,10 +51,10 @@ def save_stats(unique_pages, longest_page, word_freq, subdomains):
             "subdomains": dict(subdomains)
         }, f)
 
-# ─── Load existing stats when the module starts ───
+# Loading saved data for crawler run
 unique_pages, longest_page, word_freq, subdomains = load_stats()
 
-# ─── Main scraper function (called once per page) ───
+# Main scrapper function called per page
 def scraper(url, resp):
     links = extract_next_links(url, resp)
     return [link for link in links if is_valid(link)]
@@ -76,7 +76,7 @@ def extract_next_links(url, resp):
     try:
         soup = BeautifulSoup(resp.raw_response.content, "html.parser")
 
-        # ─── Extract visible text and count words ───
+        # Extract visible text and count words
         text = soup.get_text(separator=" ")
         words = re.findall(r"[a-zA-Z]{2,}", text.lower())
         word_count = len(words)
@@ -85,30 +85,30 @@ def extract_next_links(url, resp):
         if word_count < 50:
             return links
 
-        # ─── Track unique pages (strip fragment just in case) ───
+        # Skip low-information pages (less than 50 words)
         defrag_url, _ = urldefrag(url)
         unique_pages.add(defrag_url)
 
-        # ─── Track longest page ───
+        # Track longest page
         if word_count > longest_page["count"]:
             longest_page["url"] = defrag_url
             longest_page["count"] = word_count
 
-        # ─── Count word frequencies (ignore stop words) ───
+        # Count word frequencies (ignore stop words)
         for word in words:
             if word not in STOPWORDS:
                 word_freq[word] += 1
 
-        # ─── Track subdomains ───
+        ## Track subdomains
         parsed = urlparse(defrag_url)
         hostname = parsed.hostname
         if hostname and hostname.endswith(".uci.edu"):
             subdomains[hostname] += 1
 
-        # ─── Save stats to file after every page ───
+        # Save stats to file after every page
         save_stats(unique_pages, longest_page, word_freq, subdomains)
 
-        # ─── Extract all links from the page ───
+        # Extract all links from the page
         for anchor in soup.find_all("a", href=True):
             href = anchor["href"].strip()
             if not href:
