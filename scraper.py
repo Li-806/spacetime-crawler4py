@@ -203,3 +203,6 @@ def generate_report():
     print(f"\n4. Subdomains found (alphabetical):")
     for subdomain in sorted(subdomains.keys()):
         print(f"   {subdomain}, {subdomains[subdomain]}")
+
+if __name__ == "__main__":
+    generate_report()
