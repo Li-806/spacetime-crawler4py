@@ -164,7 +164,7 @@ def is_valid(url):
         print("TypeError for ", parsed)
         raise
 
-# ─── Call this after crawling is done to print your report answers ───
+# Call this after crawling is done to print your report answers
 def generate_report():
     print(f"\n{'='*50}")
     print(f"CRAWL REPORT")
