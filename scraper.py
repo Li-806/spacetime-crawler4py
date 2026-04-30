@@ -78,6 +78,14 @@ def is_valid(url):
         if not any(hostname == d[1:] or hostname.endswith(d) for d in allowed_domains):
             return False
 
+        # Detects Repeating Directories (.../data/data/data)
+        if re.match(r".*?(/[^/]+)/+?\1/+?\1.*", parsed.path):
+            return False
+
+        # if '/' appears in an URL more than 20 times then it probably is a trap
+        if len(parsed.path.split("/")) > 20:
+            return False
+
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
@@ -87,14 +95,6 @@ def is_valid(url):
             + r"|epub|dll|cnf|tgz|sha1"
             + r"|thmx|mso|arff|rtf|jar|csv"
             + r"|rm|smil|wmv|swf|wma|zip|rar|gz)$", parsed.path.lower())
-
-        # Detects Repeating Directories (.../data/data/data)
-        if re.match(r".*?(/[^/]+)/+?\1/+?\1.*", parsed.path):
-            return False
-
-        # if '/' appears in an URL more than 20 times then it probably is a trap
-        if len(parsed.path.split("/")) > 20:
-            return False
 
 
     except TypeError:
