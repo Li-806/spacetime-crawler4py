@@ -1,0 +1,157 @@
+
+==================================================
+CRAWL REPORT
+==================================================
+
+1. Unique pages found: 9117
+
+2. Longest page:
+   URL: http://www.ics.uci.edu/~shantas/publications/19-privacy_smart_home_codaspy.ppsx
+   Word count: 150931
+
+3. Top 50 most common words (excluding stop words):
+    1. ics: 37394
+    2. uci: 21631
+    3. support: 21135
+    4. research: 19035
+    5. data: 17068
+    6. information: 16713
+    7. wiki: 16092
+    8. computer: 14199
+    9. ramesh: 14193
+   10. learning: 13029
+   11. tools: 12899
+   12. us: 12352
+   13. log: 12090
+   14. search: 11729
+   15. edu: 11403
+   16. students: 10831
+   17. will: 10693
+   18. science: 10514
+   19. computing: 10174
+   20. university: 9796
+   21. software: 9635
+   22. can: 9327
+   23. systems: 9036
+   24. events: 9004
+   25. jain: 8894
+   26. news: 8571
+   27. current: 8537
+   28. group: 8410
+   29. irvine: 8356
+   30. using: 8311
+   31. machine: 8255
+   32. access: 8073
+   33. page: 7973
+   34. media: 7879
+   35. contact: 7623
+   36. home: 7274
+   37. user: 7215
+   38. new: 7153
+   39. https: 7096
+   40. intent: 7093
+   41. read: 6904
+   42. time: 6738
+   43. please: 6733
+   44. past: 6716
+   45. services: 6670
+   46. uc: 6592
+   47. com: 6527
+   48. ai: 6486
+   49. student: 6476
+   50. uu: 6442
+
+4. Subdomains found (alphabetical):
+   accessibility.ics.uci.edu, 12
+   acoi.ics.uci.edu, 151
+   archive-beta.ics.uci.edu, 22
+   archive.ics.uci.edu, 435
+   asterix.ics.uci.edu, 7
+   betapro.proteomics.ics.uci.edu, 8
+   cdb.ics.uci.edu, 53
+   cert.ics.uci.edu, 22
+   chemdb.ics.uci.edu, 42
+   chenli.ics.uci.edu, 10
+   cloudberry.ics.uci.edu, 4
+   cml.ics.uci.edu, 323
+   code.ics.uci.edu, 28
+   computableplant.ics.uci.edu, 84
+   courselisting.ics.uci.edu, 6
+   create.ics.uci.edu, 4
+   cs.ics.uci.edu, 12
+   cs.uci.edu, 2
+   dale-cooper-v0.ics.uci.edu, 444
+   deeprxn.ics.uci.edu, 60
+   dgillen.ics.uci.edu, 64
+   ds4all.ics.uci.edu, 6
+   duttgroup.ics.uci.edu, 129
+   dynamo.ics.uci.edu, 30
+   edgelab.ics.uci.edu, 6
+   elms.ics.uci.edu, 6
+   emj.ics.uci.edu, 46
+   evoke.ics.uci.edu, 4
+   fellowships.ics.uci.edu, 2
+   flamingo.ics.uci.edu, 22
+   fr.ics.uci.edu, 5
+   futurehealth.ics.uci.edu, 149
+   graphics.ics.uci.edu, 1
+   hobbes.ics.uci.edu, 11
+   hpi.ics.uci.edu, 5
+   hub.ics.uci.edu, 8
+   i-sensorium.ics.uci.edu, 5
+   iasl.ics.uci.edu, 1
+   icde2023.ics.uci.edu, 46
+   ics.uci.edu, 755
+   industryshowcase.ics.uci.edu, 24
+   informatics.ics.uci.edu, 39
+   informatics.uci.edu, 8
+   intranet.ics.uci.edu, 32
+   ipubmed.ics.uci.edu, 1
+   isg.ics.uci.edu, 235
+   jgarcia.ics.uci.edu, 45
+   julia-hub.ics.uci.edu, 4
+   luci.ics.uci.edu, 4
+   mailman.ics.uci.edu, 34
+   malek.ics.uci.edu, 2
+   mcs.ics.uci.edu, 18
+   mdogucu.ics.uci.edu, 1
+   mds.ics.uci.edu, 18
+   mhcid.ics.uci.edu, 35
+   mlphysics.ics.uci.edu, 19
+   mover.ics.uci.edu, 46
+   mswe.ics.uci.edu, 10
+   mupro.proteomics.ics.uci.edu, 6
+   myip.ics.uci.edu, 2
+   nalini.ics.uci.edu, 5
+   ngs.ics.uci.edu, 2025
+   oai.ics.uci.edu, 6
+   password.ics.uci.edu, 10
+   psearch.ics.uci.edu, 2
+   radicle.ics.uci.edu, 4
+   riscit.ics.uci.edu, 1
+   scale.ics.uci.edu, 6
+   scratch.proteomics.ics.uci.edu, 8
+   seal.ics.uci.edu, 95
+   selectpro.proteomics.ics.uci.edu, 12
+   sherlock.ics.uci.edu, 12
+   speedtest.ics.uci.edu, 2
+   staging-hub.ics.uci.edu, 4
+   stairs.ics.uci.edu, 3
+   stat.ics.uci.edu, 11
+   stat.uci.edu, 2
+   summeracademy.ics.uci.edu, 13
+   swiki.ics.uci.edu, 444
+   tad.ics.uci.edu, 2
+   tastier.ics.uci.edu, 1
+   tutoring.ics.uci.edu, 5
+   unite.ics.uci.edu, 10
+   vision.ics.uci.edu, 206
+   wics.ics.uci.edu, 1288
+   wiki.ics.uci.edu, 3092
+   www-db.ics.uci.edu, 24
+   www.cs.uci.edu, 4
+   www.ics.uci.edu, 1121
+   www.informatics.ics.uci.edu, 11
+   www.informatics.uci.edu, 30
+   www.stat.uci.edu, 6
+   xtune.ics.uci.edu, 3
