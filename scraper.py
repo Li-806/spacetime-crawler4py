@@ -154,9 +154,10 @@ def is_valid(url):
         if "/events/" in parsed.path or "ical" in parsed.query or "outlook" in parsed.query:
             return False
 
-        # if "doku.php" in parsed.path:
-        #     if "do=" in parsed.query or "idx=" in parsed.query:
-        #         return False
+        if "doku.php" in parsed.path:
+            return False
+            # if "do=" in parsed.query or "idx=" in parsed.query:
+            #     return False
 
         # Detect repeating directories (trap)
         if re.match(r".*?(/[^/]+)/+?\1/+?\1.*", parsed.path):
