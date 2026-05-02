@@ -151,6 +151,18 @@ def is_valid(url):
         if any(pattern in url for pattern in known_trap_sites):
             return False
 
+        # Block .mol and .sdf chemistry data files
+        if parsed.path.lower().endswith(('.mol', '.sdf')):
+            return False
+
+        # Block Apache directory listing sort URLs (?C=D;O=A etc.)
+        if re.match(r"^[CMNS]=[DNSM];O=[AD]$", parsed.query):
+            return False
+
+        # Block specific known trap path (this dan### enumeration)
+        if "/~baldig/learning" in parsed.path:
+            return False
+
         # Block calendar/event traps
         if "/events/" in parsed.path or "ical" in parsed.query or "outlook" in parsed.query:
             return False
