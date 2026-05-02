@@ -151,9 +151,19 @@ def is_valid(url):
         if any(pattern in url for pattern in known_trap_sites):
             return False
 
+        # Block calendar/event traps
         if "/events/" in parsed.path or "ical" in parsed.query or "outlook" in parsed.query:
             return False
 
+        # Block social share variants and login redirects (WordPress trap)
+        if "share=" in parsed.query or "entry_point=login" in parsed.query:
+            return False
+
+        # Block facebook/twitter/external redirects in URL
+        if "facebook.com" in parsed.query or "share_channel" in parsed.query:
+            return False
+
+        # Block doku.php
         if "doku.php" in parsed.path:
             return False
             # if "do=" in parsed.query or "idx=" in parsed.query:
@@ -174,7 +184,7 @@ def is_valid(url):
             r".*\.(css|js|bmp|gif|jpe?g|ico"
             + r"|png|tiff?|mid|mp2|mp3|mp4"
             + r"|wav|avi|mov|mpeg|ram|m4v|mkv|ogg|ogv|pdf"
-            + r"|ps|eps|tex|ppt|pptx|doc|docx|xls|xlsx|names"
+            + r"|ps|eps|tex|ppt|pptx|ppsx|ppsm|pps|doc|docx|xls|xlsx|xlsm|names"
             + r"|data|dat|exe|bz2|tar|msi|bin|7z|psd|dmg|iso"
             + r"|epub|dll|cnf|tgz|sha1"
             + r"|thmx|mso|arff|rtf|jar|csv"
