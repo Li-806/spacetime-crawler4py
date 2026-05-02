@@ -151,6 +151,14 @@ def is_valid(url):
         if any(pattern in url for pattern in known_trap_sites):
             return False
 
+        # Block dev/test server with mostly status pages
+        if "dale-cooper" in (parsed.hostname or ""):
+            return False
+
+        # Block pagination/author/category trap patterns
+        if "/page/" in parsed.path or "/author/" in parsed.path or "/category/" in parsed.path:
+            return False
+
         # Block .mol and .sdf chemistry data files
         if parsed.path.lower().endswith(('.mol', '.sdf')):
             return False
