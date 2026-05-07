@@ -1,0 +1,157 @@
+
+==================================================
+CRAWL REPORT
+==================================================
+
+1. Unique pages found: 64857
+
+2. Longest page:
+   URL: http://www.ics.uci.edu/~shantas/publications/19-privacy_smart_home_codaspy.ppsx
+   Word count: 150931
+
+3. Top 50 most common words (excluding stop words):
+    1. support: 368734
+    2. media: 287938
+    3. wiki: 276708
+    4. tools: 230295
+    5. files: 222600
+    6. search: 154751
+    7. page: 153389
+    8. security: 148327
+    9. manager: 144992
+   10. png: 141004
+   11. pasted: 126865
+   12. services: 119547
+   13. software: 119403
+   14. virtual: 117235
+   15. environments: 116279
+   16. upload: 114966
+   17. group: 108983
+   18. revisions: 105389
+   19. show: 104821
+   20. accounts: 104242
+   21. hardware: 103233
+   22. history: 98822
+   23. linux: 97765
+   24. windows: 97759
+   25. labs: 97449
+   26. file: 95503
+   27. ics: 94447
+   28. instructional: 87651
+   29. projects: 85809
+   30. kb: 85613
+   31. date: 85391
+   32. log: 85029
+   33. commands: 84737
+   34. courses: 83736
+   35. backups: 82674
+   36. user: 81732
+   37. recent: 79697
+   38. sitemap: 79282
+   39. webapps: 79046
+   40. old: 78015
+   41. site: 77443
+   42. changes: 76724
+   43. backlinks: 75637
+   44. view: 74001
+   45. requesttracker: 73300
+   46. name: 72925
+   47. root: 71852
+   48. namespaces: 71431
+   49. icsdc: 70539
+   50. choose: 69900
+
+4. Subdomains found (alphabetical):
+   accessibility.ics.uci.edu, 24
+   acoi.ics.uci.edu, 374
+   archive-beta.ics.uci.edu, 44
+   archive.ics.uci.edu, 871
+   asterix.ics.uci.edu, 21
+   betapro.proteomics.ics.uci.edu, 16
+   cdb.ics.uci.edu, 119
+   cert.ics.uci.edu, 66
+   chemdb.ics.uci.edu, 106
+   chenli.ics.uci.edu, 30
+   cloudberry.ics.uci.edu, 12
+   cml.ics.uci.edu, 858
+   code.ics.uci.edu, 56
+   computableplant.ics.uci.edu, 194
+   courselisting.ics.uci.edu, 14
+   create.ics.uci.edu, 12
+   cs.ics.uci.edu, 36
+   cs.uci.edu, 4
+   dale-cooper-v0.ics.uci.edu, 444
+   deeprxn.ics.uci.edu, 120
+   dgillen.ics.uci.edu, 122
+   ds4all.ics.uci.edu, 18
+   duttgroup.ics.uci.edu, 129
+   dynamo.ics.uci.edu, 90
+   edgelab.ics.uci.edu, 18
+   elms.ics.uci.edu, 6
+   emj.ics.uci.edu, 124
+   evoke.ics.uci.edu, 12
+   fellowships.ics.uci.edu, 6
+   flamingo.ics.uci.edu, 44
+   fr.ics.uci.edu, 11
+   futurehealth.ics.uci.edu, 447
+   graphics.ics.uci.edu, 3
+   hobbes.ics.uci.edu, 33
+   hpi.ics.uci.edu, 15
+   hub.ics.uci.edu, 8
+   i-sensorium.ics.uci.edu, 15
+   iasl.ics.uci.edu, 1
+   icde2023.ics.uci.edu, 138
+   ics.uci.edu, 1992
+   industryshowcase.ics.uci.edu, 72
+   informatics.ics.uci.edu, 93
+   informatics.uci.edu, 22
+   intranet.ics.uci.edu, 1424
+   ipubmed.ics.uci.edu, 3
+   isg.ics.uci.edu, 703
+   jgarcia.ics.uci.edu, 123
+   julia-hub.ics.uci.edu, 4
+   luci.ics.uci.edu, 12
+   mailman.ics.uci.edu, 102
+   malek.ics.uci.edu, 4
+   mcs.ics.uci.edu, 42
+   mdogucu.ics.uci.edu, 3
+   mds.ics.uci.edu, 36
+   mhcid.ics.uci.edu, 73
+   mlphysics.ics.uci.edu, 41
+   mover.ics.uci.edu, 92
+   mswe.ics.uci.edu, 30
+   mupro.proteomics.ics.uci.edu, 12
+   myip.ics.uci.edu, 4
+   nalini.ics.uci.edu, 15
+   ngs.ics.uci.edu, 5173
+   oai.ics.uci.edu, 18
+   password.ics.uci.edu, 10
+   psearch.ics.uci.edu, 4
+   radicle.ics.uci.edu, 12
+   riscit.ics.uci.edu, 3
+   scale.ics.uci.edu, 18
+   scratch.proteomics.ics.uci.edu, 16
+   seal.ics.uci.edu, 195
+   selectpro.proteomics.ics.uci.edu, 24
+   sherlock.ics.uci.edu, 24
+   speedtest.ics.uci.edu, 2
+   staging-hub.ics.uci.edu, 4
+   stairs.ics.uci.edu, 9
+   stat.ics.uci.edu, 33
+   stat.uci.edu, 6
+   summeracademy.ics.uci.edu, 39
+   swiki.ics.uci.edu, 13694
+   tad.ics.uci.edu, 6
+   tastier.ics.uci.edu, 3
+   tutoring.ics.uci.edu, 15
+   unite.ics.uci.edu, 30
+   vision.ics.uci.edu, 618
+   wics.ics.uci.edu, 2249
+   wiki.ics.uci.edu, 59799
+   www-db.ics.uci.edu, 72
+   www.cs.uci.edu, 10
+   www.ics.uci.edu, 2983
+   www.informatics.ics.uci.edu, 23
+   www.informatics.uci.edu, 64
+   www.stat.uci.edu, 18
+   xtune.ics.uci.edu, 9
